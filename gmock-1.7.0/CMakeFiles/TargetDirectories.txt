@@ -1,0 +1,4 @@
+/home/wdudek/QTapp/GMockTemplate-noend/gmock-1.7.0/CMakeFiles/gmock.dir
+/home/wdudek/QTapp/GMockTemplate-noend/gmock-1.7.0/CMakeFiles/gmock_main.dir
+/home/wdudek/QTapp/GMockTemplate-noend/gmock-1.7.0/gtest/CMakeFiles/gtest.dir
+/home/wdudek/QTapp/GMockTemplate-noend/gmock-1.7.0/gtest/CMakeFiles/gtest_main.dir
