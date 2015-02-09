@@ -1,8 +1,9 @@
 #include "minefield.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
-MineField::MineField()
+MineField::MineField() : bomb(9)
 {
     horizontalLength = 5;
     verticalLength = 5;
@@ -10,7 +11,7 @@ MineField::MineField()
     makeVector();
 }
 
-MineField::MineField(int horizontal, int vertical) : horizontalLength(horizontal), verticalLength(vertical)
+MineField::MineField(int horizontal, int vertical) : horizontalLength(horizontal), verticalLength(vertical), bomb(9)
 {
     makeVector();
     numberOfBombs = (horizontal*vertical)/10;
@@ -31,17 +32,63 @@ int MineField::getVerticalLength()
     return verticalLength;
 }
 
+void MineField::putTheBomb(unsigned int x, unsigned int y)
+{
+    if(x>verticalLength || y>horizontalLength )
+        throw std::string("Ojoj za duzo!");
+    field[y][x] = bomb;
+}
+
+bool MineField:: isBombPlaced(unsigned int x, unsigned int y)
+{
+    if(field[y][x] == bomb)
+        return true;
+    else
+        return false;
+}
+
+bool MineField::isBomb(int &element)
+{
+    return element == bomb;
+}
+
+int MineField::countBombsInRow(std::vector<int> &row)
+{
+    int bombs = 0;
+    std::for_each(row.begin(),
+                  row.end(),
+                  [&](int &element)
+    {
+        if (isBomb(element))
+            ++bombs;
+    });
+    return bombs;
+}
+
+int MineField:: countBombs()
+{
+    int bombs = 0;
+    std::for_each(field.begin(),
+                  field.end(),
+                  [&](std::vector<int> &row)
+    {
+        bombs += countBombsInRow(row);
+    });
+
+    return bombs;
+}
+
 void MineField::drawField()
 {
     drawLetters();
     drawDashes();
     for(uint32_t i=0; i < field.size(); i++)
     {
-        for(uint32_t j =0; j < field.at(i).size(); j++)
+        for(uint32_t j = 0; j < field.at(i).size(); j++)
         {
-           if(j==0)
+           if (j == 0)
            {
-               drawNumberAndFrame(i,j);
+               drawNumberAndFrame(i, j);
            }
            std::cout << field.at(i).at(j) << " ";
            if(j==field.at(i).size()-1)

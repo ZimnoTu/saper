@@ -30,15 +30,33 @@ TEST_F (MineTesting, otherField)
 }
 TEST_F (MineTesting, possibleBomb)
 {
-    EXPECT_EQ(true, testMineField.isBombPossible());
+    EXPECT_TRUE(testMineField.isBombPossible());
 }
 TEST_F (MineTesting, tooManyBombs)
 {
     testMineField.setNumberOfBombs(100);
-    EXPECT_EQ(false, testMineField.isBombPossible());
+    EXPECT_FALSE(testMineField.isBombPossible());//zrobic wyjatek
 }
-TEST_F (MineTesting, dropDaBomb)
+TEST_F (MineTesting, drop1Bomb)
 {
+    testMineField.putTheBomb(2,2);
+    EXPECT_TRUE(testMineField.isBombPlaced(2,2));
+}
+TEST_F (MineTesting, drop1Bomb_missed)
+{
+    testMineField.putTheBomb(2,2);
+    EXPECT_FALSE(testMineField.isBombPlaced(1,1));
+}
+TEST_F(MineTesting, bombOutOfSpace)
+{
+    EXPECT_THROW(testMineField.putTheBomb(10,10), std::string);
+}
 
+TEST_F (MineTesting, coutnBombs)
+{
+    testMineField.putTheBomb(2,2);
+    testMineField.putTheBomb(1,2);
+    testMineField.putTheBomb(2,1);
+    EXPECT_EQ(3, testMineField.countBombs());
 }
 
