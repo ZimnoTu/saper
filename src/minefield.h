@@ -1,20 +1,9 @@
-#ifndef MINEFIELD_H
-#define MINEFIELD_H
+#pragma once
 #include <vector>
 #include <iostream>
 
 class MineField
 {
-private:
-    unsigned int horizontalLength;
-    unsigned int verticalLength;
-    unsigned int numberOfBombs;
-    std::vector<std::vector<int>> field;
-    void makeVector();
-    const int bomb;
-
-    bool isBomb(int &element);
-
 public:
     MineField();
     MineField(int horizontal, int vertical);
@@ -26,13 +15,25 @@ public:
     void putTheBomb(unsigned int x, unsigned int y);
     bool isBombPlaced(unsigned int x, unsigned int y);
     int countBombs();
+    int countBombsInRow(std::vector<int> &row);
+    void putRandomBombs();
+    int showFieldValue(unsigned int x, unsigned int y);
+    void setDigits();
 
     void drawField();
     void drawLetters();
     void drawDashes();
     void drawNumberAndFrame(uint32_t nuberOfRow,uint32_t numberOfColumn);
-    void drawNumber(uint32_t nuberOfRow);
-    int countBombsInRow(std::vector<int> &row);
-};
+    void drawNumber(uint32_t nuberOfRow);    
 
-#endif // MINEFIELD_H
+    void incrementFieldsArround(unsigned int j, unsigned int i);
+private:
+    unsigned int horizontalLength;
+    unsigned int verticalLength;
+    unsigned int numberOfBombs;
+    std::vector<std::vector<int>> field;
+    void makeVector();
+    const int bomb;
+
+    bool isBomb(int &element);
+};
