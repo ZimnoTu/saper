@@ -32,16 +32,16 @@ int MineField::getVerticalLength()
     return verticalLength;
 }
 
-void MineField::putTheBomb(unsigned int x, unsigned int y)
+void MineField::putTheBomb(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-   if(x>verticalLength || y>horizontalLength )
+   if(horizontalParameter>horizontalLength || verticalParameter>verticalLength )
         return;
-    field[y][x] = bomb;
+    field[verticalParameter][horizontalParameter] = bomb;
 }
 
-bool MineField:: isBombPlaced(unsigned int x, unsigned int y)
+bool MineField:: isBombPlaced(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-    if(field[y][x] == bomb)
+    if(field[verticalParameter][horizontalParameter] == bomb)
         return true;
     else
         return false;
@@ -54,28 +54,28 @@ bool MineField::isBomb(int &element)
 
 int MineField::countBombsInRow(std::vector<int> &row)
 {
-    int bombs = 0;
+    int bombCounter = 0;
     std::for_each(row.begin(),
                   row.end(),
                   [&](int &element)
     {
         if (isBomb(element))
-            ++bombs;
+            ++bombCounter;
     });
-    return bombs;
+    return bombCounter;
 }
 
 int MineField:: countBombs()
 {
-    int bombs = 0;
+    int bombCounter = 0;
     std::for_each(field.begin(),
                   field.end(),
                   [&](std::vector<int> &row)
     {
-        bombs += countBombsInRow(row);
+        bombCounter += countBombsInRow(row);
     });
 
-    return bombs;
+    return bombCounter;
 }
 
 bool MineField::isBombPossible()
@@ -88,42 +88,42 @@ bool MineField::isBombPossible()
 
 void MineField::putRandomBombs()
 {
-    unsigned int x;
-    unsigned int y;
+    unsigned int horizontalParameter;
+    unsigned int verticalParameter;
     while ((unsigned int)countBombs()!= numberOfBombs)
     {
-        y = rand()%(verticalLength-1);
-        x = rand()%(horizontalLength-1);
-        putTheBomb(x,y);
+        verticalParameter = rand()%(verticalLength-1);
+        horizontalParameter = rand()%(horizontalLength-1);
+        putTheBomb(horizontalParameter,verticalParameter);
     }
 }
 
-int MineField::showFieldValue(unsigned int x, unsigned int y)
+int MineField::showFieldValue(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-    return field[y][x];
+    return field[verticalParameter][horizontalParameter];
 }
 
 
 void MineField::checkIfbombIsAround()
 {
-    for(unsigned int i =0; i< verticalLength; i++)
-        for(unsigned int j = 0; j< horizontalLength; j++)
-            if(showFieldValue(j, i) !=9 )
-                checkingFieldsAround(j, i);
+    for(unsigned int vertical =0; vertical< verticalLength; vertical++)
+        for(unsigned int horizontal = 0; horizontal< horizontalLength; horizontal++)
+            if(showFieldValue(horizontal, vertical) != bomb )
+                checkingFieldsAround(horizontal, vertical);
 }
 
-void MineField::checkingFieldsAround(unsigned int j, unsigned int i)
+void MineField::checkingFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-    for (auto l =-1; l< 2; l++)
-        for (int k =-1; k< 2; k++)
-            if (isOutOfVector(i+l, j+k))
-                if (field[i+l][j+k] ==9)
-                    field[i][j] ++;
+    for (auto vertVal =-1; vertVal< 2; vertVal++)
+        for (int horVal =-1; horVal< 2; horVal++)
+            if (isOutOfVector (horizontalParameter+horVal, verticalParameter+vertVal))
+                if (field[verticalParameter+vertVal][horizontalParameter+horVal] == bomb)
+                    field[verticalParameter][horizontalParameter] ++;
 }
 
-bool MineField::isOutOfVector(int x, int y)
+bool MineField::isOutOfVector(int horizontalParameter, int verticalParameter)
 {
-    if (x<0 || x> verticalLength-1 || y<0 || y>horizontalLength-1)
+    if (verticalParameter<0 || verticalParameter> verticalLength-1 || horizontalParameter<0 || horizontalParameter>horizontalLength-1)
         return false;
     return true;
 }
@@ -131,9 +131,7 @@ bool MineField::isOutOfVector(int x, int y)
 void MineField::makeVector()
 {
     field.resize(verticalLength);
-    for(unsigned int i =0; i< verticalLength; i++)
-    {
-        for(unsigned int j = 0; j< horizontalLength; j++)
-            field.at(i).push_back(0);
-    }
+    for(unsigned int vertical =0; vertical< verticalLength; vertical++)
+        for(unsigned int horizontal = 0; horizontal< horizontalLength; horizontal++)
+            field[vertical].push_back(0);
 }

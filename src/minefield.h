@@ -13,30 +13,25 @@ public:
 
     bool isBombPossible();
     void setNumberOfBombs(int _numberOfBombs);
-    void putTheBomb(unsigned int x, unsigned int y);
-    bool isBombPlaced(unsigned int x, unsigned int y);
+    void putTheBomb(unsigned int horizontalParameter, unsigned int verticalParameter);
+    bool isBombPlaced(unsigned int horizontalParameter, unsigned int verticalParameter);
     int countBombs();
     int countBombsInRow(std::vector<int> &row);
     void putRandomBombs();
-    int showFieldValue(unsigned int x, unsigned int y);
+    int showFieldValue(unsigned int horizontalParameter, unsigned int verticalParameter);
     void checkIfbombIsAround();
-    bool isOutOfVector(int x, int y);
+    bool isOutOfVector(int horizontalParameter, int verticalParameter);
+    void checkingFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
 
-//MineFieldDrawer
-
-
-
-//
-    void checkingFieldsAround(unsigned int j, unsigned int i);
 private:
     unsigned int horizontalLength;
     unsigned int verticalLength;
     unsigned int numberOfBombs;
     std::vector<std::vector<int>> field;
-    void makeVector();
     const int bomb;
 
+    void makeVector();
     bool isBomb(int &element);
 
-    friend class mineFieldDrawer;
+    friend class MineFieldDrawer;
 };

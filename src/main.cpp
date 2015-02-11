@@ -7,20 +7,15 @@
 
 int main()
 {
-    srand(time(0)); ///TUTAJ COS NIE DZIALA!!!!!
-   // std::cout<< rand()%100 << std::endl;
-    MineField mf(10,5);
-     mf.putRandomBombs();
+    srand(time(0));
+
+    MineField mf(10,10);
     MineFieldDrawer md;
 
-   // mf.putTheBomb(0,0);
+    mf.putRandomBombs();
     mf.checkIfbombIsAround();
-   // mf.putTheBomb(4,2);
 
     md.drawField(mf);
-
-    //mf.drawField();
-
 
     return 0;
 }

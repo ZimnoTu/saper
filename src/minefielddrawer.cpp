@@ -4,20 +4,20 @@ void MineFieldDrawer::drawField(MineField &mineField)
 {
     drawLetters(mineField);
     drawDashes(mineField);
-    for(auto i=0; i < mineField.getVerticalLength(); i++)
+    for (auto vertical = 0; vertical < mineField.getVerticalLength(); vertical++)
     {
-        for (auto j = 0; j < mineField.getHorizontalLength(); j++)
+        for (auto horizontal = 0; horizontal < mineField.getHorizontalLength(); horizontal++)
         {
-            if (j == 0)
-                drawNumberAndFrame(mineField,i, j);
-            if (mineField.showFieldValue(j,i) == 9)
+            if (horizontal == 0)
+                drawNumberAndFrame(mineField,vertical, horizontal);
+            if (mineField.showFieldValue(horizontal,vertical) == mineField.bomb)
                 std::cout<< "X ";
-            else if (mineField.showFieldValue(j,i) == 0)
+            else if (mineField.showFieldValue(horizontal,vertical) == 0)
                 std::cout<< "  ";
             else
-                std::cout << mineField.showFieldValue(j,i) << " ";
-            if (j==mineField.getHorizontalLength()-1)
-                drawNumberAndFrame(mineField,i, j);
+                std::cout << mineField.showFieldValue(horizontal,vertical) << " ";
+            if (horizontal == mineField.getHorizontalLength()-1)
+                drawNumberAndFrame(mineField,vertical, horizontal);
         }
         std::cout<<std::endl;
     }
@@ -30,7 +30,7 @@ void MineFieldDrawer::drawLetters(MineField &mineField)
 {
     char letter = 'A';
     std::cout<<"    ";
-    for(auto j=0; j < mineField.getHorizontalLength(); j++)
+    for (auto horizontal =0; horizontal < mineField.getHorizontalLength(); horizontal++)
     {
         std::cout << letter << " ";
         letter++;
@@ -42,9 +42,9 @@ void MineFieldDrawer::drawLetters(MineField &mineField)
 void MineFieldDrawer::drawDashes(MineField &mineField)
 {
     std::cout<<"    ";
-    for(auto j=0; j < mineField.getHorizontalLength(); j++)
+    for(auto horizontal =0; horizontal < mineField.getHorizontalLength(); horizontal++)
     {
-        if (j== mineField.getHorizontalLength() -1)
+        if (horizontal== mineField.getHorizontalLength() -1)
             std::cout<<"-";
         else
             std::cout<<"--";

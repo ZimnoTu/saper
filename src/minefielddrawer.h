@@ -2,6 +2,7 @@
 #include "minefield.h"
 
 class MineField;
+class SmallField;
 
 class MineFieldDrawer
 {
