@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include "minefielddrawer.h"
 
 class MineField
 {
@@ -18,15 +19,15 @@ public:
     int countBombsInRow(std::vector<int> &row);
     void putRandomBombs();
     int showFieldValue(unsigned int x, unsigned int y);
-    void setDigits();
+    void checkIfbombIsAround();
+    bool isOutOfVector(int x, int y);
 
-    void drawField();
-    void drawLetters();
-    void drawDashes();
-    void drawNumberAndFrame(uint32_t nuberOfRow,uint32_t numberOfColumn);
-    void drawNumber(uint32_t nuberOfRow);    
+//MineFieldDrawer
 
-    void incrementFieldsArround(unsigned int j, unsigned int i);
+
+
+//
+    void checkingFieldsAround(unsigned int j, unsigned int i);
 private:
     unsigned int horizontalLength;
     unsigned int verticalLength;
@@ -36,4 +37,6 @@ private:
     const int bomb;
 
     bool isBomb(int &element);
+
+    friend class mineFieldDrawer;
 };

@@ -4,6 +4,8 @@ set(SOURCES
 	main.cpp
         minefield.cpp
         minefield.h
+        minefielddrawer.cpp
+        minefielddrawer.h
 
 )
 
