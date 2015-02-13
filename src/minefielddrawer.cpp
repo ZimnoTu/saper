@@ -9,48 +9,45 @@ void MineFieldDrawer::drawField(MineField &mineField)
         for (auto horizontal = 0; horizontal < mineField.getHorizontalLength(); horizontal++)
         {
             if (horizontal == 0)
-                drawNumberAndFrame(mineField,vertical, horizontal);
-            if (mineField.showFieldValue(horizontal,vertical) == mineField.bomb)
+                drawNumberAndFrame(mineField, vertical, horizontal);
+            if (mineField.getFieldValue(horizontal, vertical) == mineField.bomb)
                 std::cout<< "X ";
-            else if (mineField.showFieldValue(horizontal,vertical) == 0)
+            else if (mineField.getFieldValue(horizontal, vertical) == 0)
                 std::cout<< "  ";
             else
-                std::cout << mineField.showFieldValue(horizontal,vertical) << " ";
-            if (horizontal == mineField.getHorizontalLength()-1)
-                drawNumberAndFrame(mineField,vertical, horizontal);
+                std::cout << mineField.getFieldValue(horizontal, vertical) << " ";
+            if (horizontal == mineField.getHorizontalLength() - 1)
+                drawNumberAndFrame(mineField, vertical, horizontal);
         }
         std::cout<<std::endl;
     }
     drawDashes(mineField);
     drawLetters(mineField);
-    return;
 }
 
 void MineFieldDrawer::drawLetters(MineField &mineField)
 {
     char letter = 'A';
-    std::cout<<"    ";
-    for (auto horizontal =0; horizontal < mineField.getHorizontalLength(); horizontal++)
+    std::cout << "    ";
+    for (auto horizontal = 0; horizontal < mineField.getHorizontalLength(); horizontal++)
     {
         std::cout << letter << " ";
         letter++;
     }
     std::cout << std::endl;
-    return;
 }
 
 void MineFieldDrawer::drawDashes(MineField &mineField)
 {
-    std::cout<<"    ";
-    for(auto horizontal =0; horizontal < mineField.getHorizontalLength(); horizontal++)
+    std::cout << "    ";
+    for(auto horizontal = 0; horizontal < mineField.getHorizontalLength(); horizontal++)
     {
-        if (horizontal== mineField.getHorizontalLength() -1)
-            std::cout<<"-";
+        if (horizontal == mineField.getHorizontalLength() - 1)
+            std::cout << "-";
         else
-            std::cout<<"--";
+            std::cout << "--";
     }
     std::cout<<std::endl;
-    return;
 }
 
 void MineFieldDrawer::drawNumberAndFrame(MineField &mineField, unsigned int numberOfRow, unsigned int numberOfColumn)
@@ -60,19 +57,17 @@ void MineFieldDrawer::drawNumberAndFrame(MineField &mineField, unsigned int numb
         drawNumber(numberOfRow);
         std::cout << "| ";
     }
-    else if((int)numberOfColumn == mineField.getHorizontalLength()-1)
+    else if(static_cast<int>(numberOfColumn) == mineField.getHorizontalLength() - 1)
     {
-        std::cout<< "| ";
+        std::cout << "| ";
         drawNumber(numberOfRow);
     }
-    return;
 }
 
 void MineFieldDrawer::drawNumber(unsigned numberOfRow)
 {
     if(numberOfRow < 9)
-        std::cout<< numberOfRow+1 << " ";
+        std::cout<< numberOfRow + 1 << " ";
     else
-        std::cout<< numberOfRow+1;
-    return;
+        std::cout<< numberOfRow + 1;
 }

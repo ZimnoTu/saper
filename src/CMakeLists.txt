@@ -8,7 +8,8 @@ set(SOURCES
         minefielddrawer.h
         smallfield.cpp
         smallfield.h
-
+        inputhandler.cpp
+        inputhandler.h
 )
 
 add_library(${PROJECT_NAME}-lib ${SOURCES})

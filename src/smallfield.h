@@ -1,8 +1,7 @@
 #pragma once
 
-class SmallField
+struct SmallField
 {
-public:
     int value;
     bool covered;
     SmallField();

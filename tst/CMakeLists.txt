@@ -3,6 +3,7 @@ project(saper-ut)
 set(SOURCES
     UnitTests.cpp
     main.cpp
+    InputHandlerTests.cpp
 )
 
 set(GMOCK_DIR "../gmock-1.7.0"
