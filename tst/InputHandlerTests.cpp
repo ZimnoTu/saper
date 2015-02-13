@@ -15,57 +15,77 @@ protected:
     InputHandler testIH;
 };
 
-TEST_F(InputHandlerTest, checkMove_recievesGoodInputUppercase_A1)
+TEST_F(InputHandlerTest, checkMove_recievesGoodInput_A1)
 {
    std::string testString = "A1";
    EXPECT_TRUE(testIH.checkMove(testString));
 }
 
-TEST_F (InputHandlerTest, checkMove_recievesBadInputUppercase_AA1)
+TEST_F (InputHandlerTest, checkMove_recievesBadInput_AA1)
 {
     std::string testString = "AA1";
     EXPECT_FALSE(testIH.checkMove(testString));
 }
 
-TEST_F (InputHandlerTest, checkMove_recievesGoodInputUppercase_A10)
+TEST_F (InputHandlerTest, checkMove_recievesGoodInput_A10)
 {
     std::string testString = "A10";
     EXPECT_TRUE(testIH.checkMove(testString));
 }
-
-TEST_F (InputHandlerTest, checkMove_recievesBadInputUppercase_1A0)
-{
-    std::string testString = "1A0";
-    EXPECT_FALSE(testIH.checkMove(testString));
-}
-TEST_F(InputHandlerTest, checkMove_recievesGoodInputUppercase_a1)
+TEST_F(InputHandlerTest, checkMove_recievesGoodInputLowercase_a1)
 {
    std::string testString = "a1";
    EXPECT_TRUE(testIH.checkMove(testString));
 }
-TEST_F (InputHandlerTest, checkMove_recievesBadInputUppercase_A1B)
+TEST_F (InputHandlerTest, checkMove_recievesBadInput_A1B)
 {
     std::string testString = "A1B";
     EXPECT_FALSE(testIH.checkMove(testString));
 }
-TEST_F (InputHandlerTest, checkMove_recievesBadInputUppercase_A1B1)
+TEST_F (InputHandlerTest, checkMove_recievesBadInput_A1B1)
 {
     std::string testString = "A1B1";
     EXPECT_FALSE(testIH.checkMove(testString));
 }
-TEST_F (InputHandlerTest, checkMove_recievesBadInputUppercase_A1Brackets)
+TEST_F (InputHandlerTest, checkMove_recievesBadInput_A1Brackets)
 {
     std::string testString = "A1[]";
     EXPECT_FALSE(testIH.checkMove(testString));
 }
-TEST_F (InputHandlerTest, checkMove_recievesBadInputUppercase_ASlash1)
+TEST_F (InputHandlerTest, checkMove_recievesBadInput_A_Slash_1)
 {
     std::string testString = "A/1";
     EXPECT_FALSE(testIH.checkMove(testString));
 }
-TEST_F(InputHandlerTest, checkMove_recievesGoodInputUppercase_A1_Space)
+TEST_F(InputHandlerTest, checkMove_recievesGoodInput_A1_Space)
 {
    std::string testString = "A1 ";
    EXPECT_TRUE(testIH.checkMove(testString));
 }
 
+TEST_F(InputHandlerTest, checkMove_recievesGoodInput_A_Space_1)
+{
+   std::string testString = "A 1";
+   EXPECT_TRUE(testIH.checkMove(testString));
+}
+
+TEST_F(InputHandlerTest, checkMove_recievesGoodInput_Space_A1)
+{
+   std::string testString = " A1";
+   EXPECT_TRUE(testIH.checkMove(testString));
+}
+TEST_F(InputHandlerTest, checkMove_recievesGoodInput_1A)
+{
+   std::string testString = "1A";
+   EXPECT_TRUE(testIH.checkMove(testString));
+}
+TEST_F (InputHandlerTest, checkMove_recievesBadInput_1A0)
+{
+    std::string testString = "1A0";
+    EXPECT_FALSE(testIH.checkMove(testString));
+}
+TEST_F(InputHandlerTest, checkMove_recievesGoodInput_10a)
+{
+    std::string testString = "10a";
+    EXPECT_TRUE(testIH.checkMove(testString));
+}

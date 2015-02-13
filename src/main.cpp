@@ -7,7 +7,7 @@
 
 int main()
 {
-    srand(time(0));
+    /*srand(time(0));
 
     MineField mf(10,10);
     MineFieldDrawer md;
@@ -27,7 +27,9 @@ int main()
 
    // mf.checkIfbombIsAround();
 
-    md.drawField(mf);
+    //md.drawField(mf);
+
+
 
     return 0;
 }
