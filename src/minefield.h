@@ -9,6 +9,7 @@ class MineField
 public:
     MineField();
     MineField(int horizontal, int vertical);
+    bool isFieldPossible();
     int getHorizontalLength();
     int getVerticalLength();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);

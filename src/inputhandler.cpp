@@ -1,34 +1,85 @@
 #include <cctype>
 #include <algorithm>
+#include <iostream>
+#include <string>
 #include "inputhandler.h"
 
-void InputHandler::spaceEraser(std::string &str)
+bool isNotAlphaOrDigit(char &s)
 {
-    str.erase(remove_if(str.begin(), str.end(), isspace),
+    if(!std::isalnum(s))
+        return true;
+    return false;
+}
+
+void InputHandler::eraseInvalidSigns(std::string &str)
+{
+    str.erase(remove_if(str.begin(), str.end(), isNotAlphaOrDigit),
               str.end());
 }
 
-void InputHandler::needSwap(std::string &str)
+bool InputHandler::areDigitsOnBothEnds(std::string str)
 {
-    if (isdigit(str[0]) && isalpha(str[1]) && !isdigit(str[2]))
-        std::swap(str[0], str[1]);
-}
-bool isAlphaOrDigitInWrongPlace (std::string &str)
-{
-    return !isalpha(str[0]) || !isdigit(str[1]);
+    if (isdigit(str.front()) && isdigit(str.back()))
+        return true;
+    return false;
 }
 
-bool InputHandler::checkMove(std::string str)
+void InputHandler::swapping(std::string &str)
 {
-    spaceEraser(str);
-    //erase white spaces+, find 1 alpha, find max 2 digits, swap characters if needed, check
+    std::rotate(str.begin(),
+                std::find_if(str.begin(), str.end(), isalpha),
+                str.end());
+}
 
-
-    needSwap(str);
-    if (isAlphaOrDigitInWrongPlace(str))
+bool InputHandler::isNumberOfAlphaAndDigitsGood (std::string str)
+{
+    int digitCounter = count_if(str.begin(), str.end(), isdigit);
+    int alphaCounter = count_if(str.begin(), str.end(), isalpha);
+    if (digitCounter < 1 || digitCounter > 2)
         return false;
-    for (int i = 2; i<str.length(); i++)
-        if (!isdigit(str[i]))
-            return false;
+    if (alphaCounter != 1)
+        return false;
     return true;
+}
+
+bool InputHandler::checkMove(std::string &str)
+{
+    eraseInvalidSigns(str);
+    if(!isNumberOfAlphaAndDigitsGood(str))
+        return false;
+    if(areDigitsOnBothEnds(str))
+        return false;
+    swapping(str);
+    return true;
+}
+std::string InputHandler::changeToUppercase(std::string &str)
+{
+    str.front() = toupper(str.front());
+    return str;
+}
+
+void InputHandler::setParameters(std::string checkedInput)
+{
+    setHorizontalParameter(checkedInput);
+    setVerticalParameter(checkedInput);
+}
+
+int InputHandler::getHorizontalParameter()
+{
+    return horizontalParameter;
+}
+
+int InputHandler::getVerticalParameter()
+{
+    return verticalParameter;
+}
+void InputHandler::setHorizontalParameter(std::string checkedInput)
+{
+    horizontalParameter = checkedInput.front()-65;
+}
+
+void InputHandler::setVerticalParameter(std::string checkedInput)
+{
+    std::string substring = checkedInput.substr(1,2);
+    verticalParameter = stoi(substring)-1;
 }

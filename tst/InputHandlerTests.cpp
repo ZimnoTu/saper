@@ -47,15 +47,15 @@ TEST_F (InputHandlerTest, checkMove_recievesBadInput_A1B1)
     std::string testString = "A1B1";
     EXPECT_FALSE(testIH.checkMove(testString));
 }
-TEST_F (InputHandlerTest, checkMove_recievesBadInput_A1Brackets)
+TEST_F (InputHandlerTest, checkMove_recievesGoodInput_A1Brackets)
 {
     std::string testString = "A1[]";
-    EXPECT_FALSE(testIH.checkMove(testString));
+    EXPECT_TRUE(testIH.checkMove(testString));
 }
-TEST_F (InputHandlerTest, checkMove_recievesBadInput_A_Slash_1)
+TEST_F (InputHandlerTest, checkMove_recievesGoodInput_A_Slash_1)
 {
     std::string testString = "A/1";
-    EXPECT_FALSE(testIH.checkMove(testString));
+    EXPECT_TRUE(testIH.checkMove(testString));
 }
 TEST_F(InputHandlerTest, checkMove_recievesGoodInput_A1_Space)
 {
@@ -88,4 +88,28 @@ TEST_F(InputHandlerTest, checkMove_recievesGoodInput_10a)
 {
     std::string testString = "10a";
     EXPECT_TRUE(testIH.checkMove(testString));
+}
+TEST_F(InputHandlerTest, changingToUppercase_11a)
+{
+    std::string testString = "11a";
+    testIH.checkMove(testString);
+    EXPECT_EQ("A11", testIH.changeToUppercase(testString));
+}
+TEST_F(InputHandlerTest, interpretInputHorizontal_A1)
+{
+    std::string testString = "A1";
+    testIH.setParameters(testString);
+    EXPECT_EQ(0, testIH.getHorizontalParameter());
+}
+TEST_F(InputHandlerTest, interpretInputVertical_A1)
+{
+    std::string testString = "A1";
+    testIH.setParameters(testString);
+    EXPECT_EQ(0, testIH.getVerticalParameter());
+}
+TEST_F(InputHandlerTest, interpretInputVertical_A11)
+{
+    std::string testString = "A11";
+    testIH.setParameters(testString);
+    EXPECT_EQ(10, testIH.getVerticalParameter());
 }

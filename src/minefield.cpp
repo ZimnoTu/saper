@@ -17,6 +17,13 @@ MineField::MineField(int horizontal, int vertical) : horizontalLength(horizontal
     numberOfBombs = (horizontal*vertical)/10;
 }
 
+bool MineField::isFieldPossible()
+{
+    if(horizontalLength > 26 || verticalLength > 98)
+        return false;
+    return true;
+}
+
 void MineField::setNumberOfBombs(int _numberOfBombs)
 {
     numberOfBombs = _numberOfBombs;
@@ -135,8 +142,13 @@ bool MineField::isOutOfVector(int horizontalParameter, int verticalParameter)
 
 void MineField::makeVector()
 {
-    field.resize(verticalLength);
-    for (unsigned int vertical = 0; vertical < verticalLength; vertical++)
-        for(unsigned int horizontal = 0; horizontal < horizontalLength; horizontal++)
-            field[vertical].push_back(SmallField());
+    if(isFieldPossible())
+    {
+        field.resize(verticalLength);
+        for (unsigned int vertical = 0; vertical < verticalLength; vertical++)
+            for(unsigned int horizontal = 0; horizontal < horizontalLength; horizontal++)
+                field[vertical].push_back(SmallField());
+    }
+  //  else
+    //    throw std::string("field is too big");
 }

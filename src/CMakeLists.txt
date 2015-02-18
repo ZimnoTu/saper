@@ -10,6 +10,8 @@ set(SOURCES
         smallfield.h
         inputhandler.cpp
         inputhandler.h
+        game.cpp
+        game.h
 )
 
 add_library(${PROJECT_NAME}-lib ${SOURCES})

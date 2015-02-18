@@ -28,6 +28,16 @@ TEST_F (MineTesting, otherField)
     MineField mineField2 (7,4);
     EXPECT_EQ(7, mineField2.getHorizontalLength() );
 }
+TEST_F (MineTesting, fieldToBig_vertical)
+{
+    MineField mineFieldTooBig(10, 99);
+    EXPECT_FALSE(mineFieldTooBig.isFieldPossible());
+}
+TEST_F (MineTesting, fieldToBig_horizontal)
+{
+    MineField mineFieldTooBig(27, 10);
+    EXPECT_FALSE(mineFieldTooBig.isFieldPossible());
+}
 TEST_F (MineTesting, possibleBomb)
 {
     EXPECT_TRUE(testMineField.isBombPossible());

@@ -4,6 +4,7 @@ set(SOURCES
     UnitTests.cpp
     main.cpp
     InputHandlerTests.cpp
+    GameTest.cpp
 )
 
 set(GMOCK_DIR "../gmock-1.7.0"
