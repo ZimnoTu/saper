@@ -4,12 +4,12 @@
 #include <string>
 #include "inputhandler.h"
 
-bool isNotAlphaOrDigit(char &s)
+auto isNotAlphaOrDigit = [](char &s) //teraz funkcja jest na stosie a nie na stercie
 {
     if(!std::isalnum(s))
         return true;
     return false;
-}
+};
 
 void InputHandler::eraseInvalidSigns(std::string &str)
 {
@@ -82,4 +82,10 @@ void InputHandler::setVerticalParameter(std::string checkedInput)
 {
     std::string substring = checkedInput.substr(1,2);
     verticalParameter = stoi(substring)-1;
+}
+
+void InputHandler::processImput(std::string str)
+{
+    if(checkMove(str))
+        setParameters(str);
 }

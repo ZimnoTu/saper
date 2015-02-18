@@ -9,13 +9,13 @@ int main()
 {
     srand(time(0));
 
-    /*MineField mf(26,10);
+    MineField mf(26,10);
     MineFieldDrawer md;
     mf.putRandomBombs();
     mf.checkIfbombIsAround();
-    md.drawField(mf);*/
+    md.drawField(mf);
 
-    InputHandler ih;
+    /*InputHandler ih;
     std::string str ("18c");
     std::cout << str << std::endl;
     ih.swapping(str);

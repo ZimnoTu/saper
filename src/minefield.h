@@ -14,6 +14,8 @@ public:
     int getVerticalLength();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);
     void setFieldValue (unsigned int horizontalParameter , unsigned int verticalParameter, int value);
+    void setFieldStatus (unsigned int horizontalParameter , unsigned int verticalParameter);
+    bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     bool isBombPossible();
     void setNumberOfBombs(int _numberOfBombs);
@@ -27,6 +29,7 @@ public:
     bool isOutOfVector(int horizontalParameter, int verticalParameter);
     void checkingFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
 
+    void incraseIfBomb(int bombCounter);
 private:
     unsigned int horizontalLength;
     unsigned int verticalLength;
