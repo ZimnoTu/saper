@@ -23,21 +23,24 @@ protected:
 
 TEST_F(GameTest, MoveMatchToField_A1)
 {
-    EXPECT_TRUE(testGame.isMoveValid("A1"));
+    std::string str = "A1";
+    EXPECT_TRUE(testGame.isMoveValid(str));
 }
 TEST_F(GameTest, MoveMatchToField_10J)
 {
-    EXPECT_TRUE(testGame.isMoveValid("10J"));
+    std::string str = "10J";
+    EXPECT_TRUE(testGame.isMoveValid(str));
 }
 TEST_F(GameTest, MoveMatchToField_A15)
 {
-    EXPECT_FALSE(testGame.isMoveValid("A15"));
+    std::string str = "A15";
+    EXPECT_FALSE(testGame.isMoveValid(str));
 }
 TEST_F(GameTest, MoveMatchToField_L15)
 {
-    EXPECT_FALSE(testGame.isMoveValid("L15"));
+    std::string str = "L15";
+    EXPECT_FALSE(testGame.isMoveValid(str));
 }
-
 TEST_F(GameTest, GetValueOfFieldWithBomb)
 {
     testGame.placeBomb(1,1);
@@ -49,9 +52,29 @@ TEST_F(GameTest, GetValueOfFieldNearBomb)
     testGame.checkingField();
     EXPECT_EQ(1, testGame.getFieldValue(1,2));
 }
-TEST_F(GameTest, MoveChangedFieldTo_Uncoverd)
+TEST_F(GameTest, MoveChangedFieldTo_Uncoverd_Uppercase)
 {
     std::string str("A1");
     testGame.makeMove(str);
     EXPECT_FALSE(testGame.isFieldCovered());
+}
+TEST_F(GameTest, MoveChangedFieldTo_Uncoverd_Lowercase_3c)
+{
+    std::string str("3c");
+    testGame.makeMove(str);
+    EXPECT_FALSE(testGame.isFieldCovered());
+}
+TEST_F(GameTest, MoveChangedFieldAroundTo_Uncovered)
+{
+    std::string str("A1");
+    testGame.makeMove(str);
+    EXPECT_FALSE(testGame.isFieldCovered(1,1));
+}
+TEST_F(GameTest, MoveChangedFieldAroundTo_Uncoveredd)
+{
+    testGame.placeBomb(1,1);
+    testGame.placeBomb(2,2);
+    std::string str("B2");
+    testGame.makeMove(str);
+    EXPECT_FALSE(testGame.isFieldCovered(2,2));
 }

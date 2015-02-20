@@ -10,9 +10,9 @@ void Game::startGame()
     mineField.checkIfbombIsAround();
 }
 
-bool Game::isMoveValid(std::string str)
+bool Game::isMoveValid(std::string &str)
 {
-    inputHndlr.processImput(str);
+    inputHndlr.processInput(str);
     if(inputHndlr.getHorizontalParameter() > mineField.getHorizontalLength())
         return false;
     if(inputHndlr.getVerticalParameter() > mineField.getVerticalLength())
@@ -20,17 +20,38 @@ bool Game::isMoveValid(std::string str)
     return true;
 }
 
-void Game::makeMove(std::string str)
+int Game::makeMove(std::string &str)
 {
     if (isMoveValid(str))
-        mineField.setFieldStatus(inputHndlr.getHorizontalParameter(), inputHndlr.getVerticalParameter());
+    {
+        presentHorizontalMove = inputHndlr.getHorizontalParameter();
+        presentVerticalMove = inputHndlr.getVerticalParameter();
+        if (getFieldValue(presentHorizontalMove, presentVerticalMove) == 9)
+        {
+            mineField.uncoverAllBombs();
+            return 1;
+        }
+        else
+        {
+            mineField.uncoverFieldsAround(presentHorizontalMove,presentVerticalMove);
+            return 0;
+        }
+    }
 }
 
 bool Game::isFieldCovered()
 {
-    return mineField.isFieldCovered(inputHndlr.getHorizontalParameter(),inputHndlr.getVerticalParameter());
+    return mineField.isFieldCovered(presentHorizontalMove, presentVerticalMove);
+}
+bool Game::isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter)
+{
+    return mineField.isFieldCovered(horizontalParameter, verticalParameter);
 }
 
+void Game::draw()
+{
+    mineFieldDrawer.drawField(mineField);
+}
 void Game::checkingField()
 {
     mineField.checkIfbombIsAround();
@@ -45,3 +66,23 @@ int Game::getFieldValue(unsigned int horizontalParameter, unsigned int verticalP
 {
     mineField.getFieldValue(horizontalParameter, verticalParameter);
 }
+
+void Game::play()
+{
+    std::cout << "Hello! " << std::endl;
+    startGame();
+    int exit = 1;
+    while (mineField.getnumberOfBombs() != mineField.getnumberOfUncoveredFields() && exit == 1)
+    {
+        std::cout << "W petli"<< std::endl;
+        std::string move;
+        draw();
+        std::cout << "Your move: ";
+        std::cin >> move;
+
+        exit = makeMove(move);
+
+    }
+
+}
+

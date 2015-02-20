@@ -17,7 +17,7 @@ public:
     void setHorizontalParameter(std::string checkedInput);
     void setVerticalParameter(std::string checkedInput);
 
-    void processImput(std::string str);
+    void processInput(std::string &str);
 
 private:
     int horizontalParameter;

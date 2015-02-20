@@ -50,6 +50,7 @@ bool InputHandler::checkMove(std::string &str)
     if(areDigitsOnBothEnds(str))
         return false;
     swapping(str);
+    changeToUppercase(str);
     return true;
 }
 std::string InputHandler::changeToUppercase(std::string &str)
@@ -84,7 +85,7 @@ void InputHandler::setVerticalParameter(std::string checkedInput)
     verticalParameter = stoi(substring)-1;
 }
 
-void InputHandler::processImput(std::string str)
+void InputHandler::processInput(std::string &str)
 {
     if(checkMove(str))
         setParameters(str);

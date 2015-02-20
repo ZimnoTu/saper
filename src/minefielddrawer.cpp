@@ -2,20 +2,26 @@
 
 void MineFieldDrawer::drawField(MineField &mineField)
 {
+    system("clear");
     drawLetters(mineField);
-    drawDashes(mineField);
+    drawDashes(mineField);    
     for (auto vertical = 0; vertical < mineField.getVerticalLength(); vertical++)
     {
         for (auto horizontal = 0; horizontal < mineField.getHorizontalLength(); horizontal++)
         {
             if (horizontal == 0)
                 drawNumberAndFrame(mineField, vertical, horizontal);
-            if (mineField.getFieldValue(horizontal, vertical) == mineField.bomb)
-                std::cout<< "X ";
-            else if (mineField.getFieldValue(horizontal, vertical) == 0)
-                std::cout<< "  ";
+            if(mineField.isFieldCovered(horizontal, vertical))
+                std::cout<< ". ";
             else
-                std::cout << mineField.getFieldValue(horizontal, vertical) << " ";
+            {
+                if (mineField.getFieldValue(horizontal, vertical) == mineField.bomb)
+                    std::cout<< "X ";
+                else if (mineField.getFieldValue(horizontal, vertical) == 0)
+                    std::cout<< "  ";
+                else
+                    std::cout << mineField.getFieldValue(horizontal, vertical) << " ";
+            }
             if (horizontal == mineField.getHorizontalLength() - 1)
                 drawNumberAndFrame(mineField, vertical, horizontal);
         }

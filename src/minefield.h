@@ -14,7 +14,9 @@ public:
     int getVerticalLength();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);
     void setFieldValue (unsigned int horizontalParameter , unsigned int verticalParameter, int value);
-    void setFieldStatus (unsigned int horizontalParameter , unsigned int verticalParameter);
+    void setFieldStatusToUncover (unsigned int horizontalParameter , unsigned int verticalParameter);
+    void uncoverFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
+    void uncoverAll(unsigned int horizontalParameter, unsigned int verticalParameter);
     bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     bool isBombPossible();
@@ -30,6 +32,10 @@ public:
     void checkingFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     void incraseIfBomb(int bombCounter);
+    int getnumberOfUncoveredFields();
+    int getnumberOfBombs();
+
+    void uncoverAllBombs();
 private:
     unsigned int horizontalLength;
     unsigned int verticalLength;

@@ -57,6 +57,7 @@ TEST_F (InputHandlerTest, checkMove_recievesGoodInput_A_Slash_1)
     std::string testString = "A/1";
     EXPECT_TRUE(testIH.checkMove(testString));
 }
+
 TEST_F(InputHandlerTest, checkMove_recievesGoodInput_A1_Space)
 {
    std::string testString = "A1 ";
@@ -89,11 +90,11 @@ TEST_F(InputHandlerTest, checkMove_recievesGoodInput_10a)
     std::string testString = "10a";
     EXPECT_TRUE(testIH.checkMove(testString));
 }
-TEST_F(InputHandlerTest, changingToUppercase_11a)
+TEST_F(InputHandlerTest, changingToUppercase_11cl)
 {
-    std::string testString = "11a";
+    std::string testString = "11c";
     testIH.checkMove(testString);
-    EXPECT_EQ("A11", testIH.changeToUppercase(testString));
+    EXPECT_EQ("C11", testIH.changeToUppercase(testString));
 }
 TEST_F(InputHandlerTest, interpretInputHorizontal_A1)
 {
