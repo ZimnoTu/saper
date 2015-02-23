@@ -29,7 +29,7 @@ int Game::makeMove(std::string &str)
         if (getFieldValue(presentHorizontalMove, presentVerticalMove) == 9)
         {
             mineField.uncoverAllBombs();
-            return 1;
+            return 9;
         }
         else
         {
@@ -71,18 +71,25 @@ void Game::play()
 {
     std::cout << "Hello! " << std::endl;
     startGame();
-    int exit = 1;
-    while (mineField.getnumberOfBombs() != mineField.getnumberOfUncoveredFields() && exit == 1)
+    int exit = 0;
+
+    while (mineField.getnumberOfBombs() != mineField.getnumberOfUncoveredFields() && exit == 0)
     {
-        std::cout << "W petli"<< std::endl;
         std::string move;
         draw();
         std::cout << "Your move: ";
         std::cin >> move;
 
         exit = makeMove(move);
-
+        if(exit == 9)
+        {
+            std::cout<< "Looser!!!\n";
+            draw();
+            std::cout<< "Looser!!!\n";
+        }
     }
+    if(exit == 0)
+        std::cout<< "The winer is YOU!\n";
 
 }
 

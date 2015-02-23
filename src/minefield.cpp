@@ -157,7 +157,8 @@ int MineField::getnumberOfUncoveredFields()
     for (unsigned int vertical = 0; vertical< verticalLength; vertical++)
         for (unsigned int horizontal = 0; horizontal< horizontalLength; horizontal++)
             if (isFieldCovered(horizontal, vertical))
-                ++numberOfUncoveredField;
+              ++numberOfUncoveredField;
+    return numberOfUncoveredField;
 }
 
 int MineField::getnumberOfBombs()
