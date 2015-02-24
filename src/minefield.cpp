@@ -49,16 +49,17 @@ void MineField::setFieldValue(unsigned int horizontalParameter, unsigned int ver
     field[verticalParameter][horizontalParameter].value += value;
 }
 
-void MineField::setFieldStatusToUncover(unsigned int horizontalParameter, unsigned int verticalParameter)
+void MineField::uncoverField(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
     field[verticalParameter][horizontalParameter].covered = false;
 }
 
 void MineField::uncoverFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-    if (!isOutOfVector(horizontalParameter, verticalParameter) && isFieldCovered(horizontalParameter, verticalParameter))
+    if (!isOutOfVector(horizontalParameter, verticalParameter) &&
+            isFieldCovered(horizontalParameter, verticalParameter))
     {
-        setFieldStatusToUncover(horizontalParameter, verticalParameter);
+        uncoverField(horizontalParameter, verticalParameter);
         if (getFieldValue(horizontalParameter, verticalParameter) == 0)
         {
             std::vector<int> positions = {-1, 0, 1};
@@ -66,7 +67,6 @@ void MineField::uncoverFieldsAround(unsigned int horizontalParameter, unsigned i
                 for(auto pos_y : positions)
                     if(pos_x || pos_y)
                         uncoverFieldsAround(horizontalParameter + pos_x, verticalParameter + pos_y);
-
         }
     }
 }
@@ -171,7 +171,7 @@ void MineField::uncoverAllBombs()
     for (unsigned int vertical = 0; vertical< verticalLength; vertical++)
         for (unsigned int horizontal = 0; horizontal< horizontalLength; horizontal++)
             if (getFieldValue(horizontal, vertical) == bomb )
-                setFieldStatusToUncover(horizontal, vertical);
+                uncoverField(horizontal, vertical);
 }
 
 void MineField::checkIfbombIsAround()

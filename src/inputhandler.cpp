@@ -11,10 +11,12 @@ auto isNotAlphaOrDigit = [](char &s) //teraz funkcja jest na stosie a nie na ste
     return false;
 };
 
-void InputHandler::eraseInvalidSigns(std::string &str)
+std::string InputHandler::eraseInvalidSigns(std::string &str)
 {
-    str.erase(remove_if(str.begin(), str.end(), isNotAlphaOrDigit),
-              str.end());
+    std::string tmpString = str;
+    tmpString.erase(remove_if(tmpString.begin(), tmpString.end(), isNotAlphaOrDigit),
+                     tmpString.end());
+    return tmpString;
 }
 
 bool InputHandler::areDigitsOnBothEnds(std::string str)
@@ -24,11 +26,15 @@ bool InputHandler::areDigitsOnBothEnds(std::string str)
     return false;
 }
 
-void InputHandler::swapping(std::string &str)
+std::string InputHandler::swapping(std::string str) /////BOŻE JAK FOKA PŁACZE!
 {
-    std::rotate(str.begin(),
-                std::find_if(str.begin(), str.end(), isalpha),
-                str.end());
+    std::string tmpString = str;
+    std::string tmpString2;
+    std::rotate(tmpString.begin(),
+                    std::find_if(tmpString.begin(), tmpString.end(), isalpha),
+                    tmpString.end());
+    tmpString2 = tmpString;
+    return tmpString2;
 }
 
 bool InputHandler::isNumberOfAlphaAndDigitsGood (std::string str)
@@ -42,18 +48,19 @@ bool InputHandler::isNumberOfAlphaAndDigitsGood (std::string str)
     return true;
 }
 
-bool InputHandler::checkMove(std::string &str)
+std::string InputHandler::prepareInputToRead( std::string &str)
 {
-    eraseInvalidSigns(str);
-    if(!isNumberOfAlphaAndDigitsGood(str))
-        return false;
-    if(areDigitsOnBothEnds(str))
-        return false;
-    swapping(str);
-    changeToUppercase(str);
-    return true;
+    std::string tmpString;
+    tmpString = eraseInvalidSigns(str);
+    if(!isNumberOfAlphaAndDigitsGood(tmpString))
+        return "0";
+    if(areDigitsOnBothEnds(tmpString))
+        return "0";
+    tmpString = swapping(tmpString);
+    tmpString = changeToUppercase(tmpString);
+    return tmpString;
 }
-std::string InputHandler::changeToUppercase(std::string &str)
+std::string InputHandler::changeToUppercase( std::string &str)
 {
     str.front() = toupper(str.front());
     return str;
@@ -82,11 +89,14 @@ void InputHandler::setHorizontalParameter(std::string checkedInput)
 void InputHandler::setVerticalParameter(std::string checkedInput)
 {
     std::string substring = checkedInput.substr(1,2);
-    verticalParameter = stoi(substring)-1;
+    verticalParameter = stoi(substring) - 1;
 }
 
-void InputHandler::processInput(std::string &str)
+std::string InputHandler::processInput(std::string &str)
 {
-    if(checkMove(str))
-        setParameters(str);
+    std::string processedInput;
+    processedInput = prepareInputToRead(str);
+    if(processedInput != "0")
+        setParameters(processedInput);
+    return processedInput;
 }

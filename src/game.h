@@ -9,10 +9,11 @@ public:
     Game();
     Game(int horizontalLenght, int verticalLenght);
     void startGame();
-    bool isMoveValid(std::string &str);
+    bool isMoveValid();
     void placeBomb(unsigned int horizontalParameter, unsigned int verticalParameter);
     void checkingField();
     int getFieldValue(unsigned int horizontalParameter, unsigned int verticalParameter);
+    std::string parseInput (std::string input);
 
     int makeMove(std::string &str);
     bool isFieldCovered();

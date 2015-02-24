@@ -4,9 +4,9 @@
 class InputHandler
 {
 public:
-    bool checkMove(std::string &str);
-    void eraseInvalidSigns(std::string &str);
-    void swapping(std::string &str);
+    std::string prepareInputToRead(std::string &str);
+    std::string eraseInvalidSigns(std::string &str);
+    std::string swapping(std::string str);
     bool areDigitsOnBothEnds(std::string str);
     bool isNumberOfAlphaAndDigitsGood (std::string str);
     std::string changeToUppercase(std::string &str);
@@ -17,7 +17,7 @@ public:
     void setHorizontalParameter(std::string checkedInput);
     void setVerticalParameter(std::string checkedInput);
 
-    void processInput(std::string &str);
+    std::string processInput(std::string &str);
 
 private:
     int horizontalParameter;

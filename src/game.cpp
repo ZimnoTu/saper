@@ -10,9 +10,16 @@ void Game::startGame()
     mineField.checkIfbombIsAround();
 }
 
-bool Game::isMoveValid(std::string &str)
+std::string Game::parseInput(std::string input)
 {
-    inputHndlr.processInput(str);
+    std::string processedInput;
+    processedInput = inputHndlr.processInput(input);
+    return processedInput;
+}
+
+bool Game::isMoveValid()
+{
+    //parseInput(indianaJones);
     if(inputHndlr.getHorizontalParameter() > mineField.getHorizontalLength())
         return false;
     if(inputHndlr.getVerticalParameter() > mineField.getVerticalLength())
@@ -22,7 +29,8 @@ bool Game::isMoveValid(std::string &str)
 
 int Game::makeMove(std::string &str)
 {
-    if (isMoveValid(str))
+    std::string processedInput = parseInput(str);
+    if (isMoveValid())
     {
         presentHorizontalMove = inputHndlr.getHorizontalParameter();
         presentVerticalMove = inputHndlr.getVerticalParameter();
@@ -67,13 +75,16 @@ int Game::getFieldValue(unsigned int horizontalParameter, unsigned int verticalP
     mineField.getFieldValue(horizontalParameter, verticalParameter);
 }
 
+
+
 void Game::play()
 {
     std::cout << "Hello! " << std::endl;
     startGame();
     int exit = 0;
 
-    while (mineField.getnumberOfBombs() != mineField.getnumberOfUncoveredFields() && exit == 0)
+    while (mineField.getnumberOfBombs() != mineField.getnumberOfUncoveredFields() &&
+            exit == 0)
     {
         std::string move;
         draw();
@@ -83,7 +94,6 @@ void Game::play()
         exit = makeMove(move);
         if(exit == 9)
         {
-            std::cout<< "Looser!!!\n";
             draw();
             std::cout<< "Looser!!!\n";
         }

@@ -14,7 +14,7 @@ public:
     int getVerticalLength();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);
     void setFieldValue (unsigned int horizontalParameter , unsigned int verticalParameter, int value);
-    void setFieldStatusToUncover (unsigned int horizontalParameter , unsigned int verticalParameter);
+    void uncoverField (unsigned int horizontalParameter , unsigned int verticalParameter);
     void uncoverFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
     void uncoverAll(unsigned int horizontalParameter, unsigned int verticalParameter);
     bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);

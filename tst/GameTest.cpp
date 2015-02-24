@@ -20,26 +20,30 @@ protected:
     EXPECT_EQ(3,testGame2.mineField.getHorizontalLength());
     EXPECT_EQ(4, testGame2.mineField.getVerticalLength());
 }*/
-
 TEST_F(GameTest, MoveMatchToField_A1)
 {
     std::string str = "A1";
-    EXPECT_TRUE(testGame.isMoveValid(str));
+    testGame.parseInput(str);
+    EXPECT_TRUE(testGame.isMoveValid());
 }
 TEST_F(GameTest, MoveMatchToField_10J)
 {
     std::string str = "10J";
-    EXPECT_TRUE(testGame.isMoveValid(str));
+    testGame.parseInput(str);
+    EXPECT_TRUE(testGame.isMoveValid());
 }
+
 TEST_F(GameTest, MoveMatchToField_A15)
 {
     std::string str = "A15";
-    EXPECT_FALSE(testGame.isMoveValid(str));
+    testGame.parseInput(str);
+    EXPECT_FALSE(testGame.isMoveValid());
 }
 TEST_F(GameTest, MoveMatchToField_L15)
 {
     std::string str = "L15";
-    EXPECT_FALSE(testGame.isMoveValid(str));
+    testGame.parseInput(str);
+    EXPECT_FALSE(testGame.isMoveValid());
 }
 TEST_F(GameTest, GetValueOfFieldWithBomb)
 {
@@ -60,7 +64,7 @@ TEST_F(GameTest, MoveChangedFieldTo_Uncoverd_Uppercase)
 }
 TEST_F(GameTest, MoveChangedFieldTo_Uncoverd_Lowercase_3c)
 {
-    std::string str("3c");
+    std::string str("3C");
     testGame.makeMove(str);
     EXPECT_FALSE(testGame.isFieldCovered());
 }
@@ -78,3 +82,4 @@ TEST_F(GameTest, MoveChangedFieldAroundTo_Uncoveredd)
     testGame.makeMove(str);
     EXPECT_FALSE(testGame.isFieldCovered(2,2));
 }
+
