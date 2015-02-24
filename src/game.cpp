@@ -19,7 +19,6 @@ std::string Game::parseInput(std::string input)
 
 bool Game::isMoveValid()
 {
-    //parseInput(indianaJones);
     if(inputHndlr.getHorizontalParameter() > mineField.getHorizontalLength())
         return false;
     if(inputHndlr.getVerticalParameter() > mineField.getVerticalLength())
@@ -45,6 +44,8 @@ int Game::makeMove(std::string &str)
             return 0;
         }
     }
+    else
+        return 0;
 }
 
 bool Game::isFieldCovered()
@@ -60,6 +61,7 @@ void Game::draw()
 {
     mineFieldDrawer.drawField(mineField);
 }
+
 void Game::checkingField()
 {
     mineField.checkIfbombIsAround();
@@ -74,8 +76,6 @@ int Game::getFieldValue(unsigned int horizontalParameter, unsigned int verticalP
 {
     mineField.getFieldValue(horizontalParameter, verticalParameter);
 }
-
-
 
 void Game::play()
 {
@@ -95,11 +95,45 @@ void Game::play()
         if(exit == 9)
         {
             draw();
-            std::cout<< "Looser!!!\n";
+            std::cout<< "Loser!!!\n";
         }
     }
     if(exit == 0)
-        std::cout<< "The winer is YOU!\n";
+        winner();
 
 }
 
+void Game::winner()
+{
+    std::cout << "WINNER!\n";
+    std::cout <<" \n";
+    std::cout <<"             @@@\n";
+    std::cout <<"             @@@                     \n";
+    std::cout <<"           @@@@@@@,                  \n";
+    std::cout <<"            @@@@@@++:`               \n";
+    std::cout <<"            @@@@@@   `+@+            \n";
+    std::cout <<"              @@+.      `@           \n";
+    std::cout <<"               `         @           \n";
+    std::cout <<"                         @           \n";
+    std::cout <<"             .#@'`   @. +            \n";
+    std::cout <<"          `@@@@@@@@@@@@;#            \n";
+    std::cout <<"         @@@@@@@@@@@@@@@.            \n";
+    std::cout <<"        @@@@@@@@@@@@@@@@@`           \n";
+    std::cout <<"       @@@@@@@@@@@@@@@@@;            \n";
+    std::cout <<"      `@@@@@@@@@@@@@@@@@             \n";
+    std::cout <<"      @@@@@@@@@@@@@@@@@@:            \n";
+    std::cout <<"      @@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"     ,@@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"     #@@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"     @@@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"     '@@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"     `@@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"      @@@@@@@@@@@@@@@@@@@            \n";
+    std::cout <<"      @@@@@@@@@@@@@@@@@@             \n";
+    std::cout <<"       @@@@@@@@@@@@@@@@@             \n";
+    std::cout <<"       ,@@@@@@@@@@@@@@@              \n";
+    std::cout <<"        '@@@@@@@@@@@@@               \n";
+    std::cout <<"         `@@@@@@@@@@@                \n";
+    std::cout <<"           :@@@@@@@                  \n";
+    std::cout <<" \n";
+}

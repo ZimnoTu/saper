@@ -19,6 +19,7 @@ public:
     bool isFieldCovered();
     bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
     void draw();
+    void winner();
 
     void play();
 

@@ -12,6 +12,8 @@ set(SOURCES
         inputhandler.h
         game.cpp
         game.h
+        menu.cpp
+        menu.h
 )
 
 add_library(${PROJECT_NAME}-lib ${SOURCES})
