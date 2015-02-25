@@ -19,7 +19,7 @@ MineField::MineField(int horizontal, int vertical) : horizontalLength(horizontal
 
 bool MineField::isFieldPossible()
 {
-    if(horizontalLength > 26 || verticalLength > 98)
+    if(horizontalLength > 26 || verticalLength > 99)
         return false;
     return true;
 }
