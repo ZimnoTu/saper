@@ -24,6 +24,14 @@ bool MineField::isFieldPossible()
     return true;
 }
 
+void MineField::setParameters(int _horizontalLength, int _verticalLength)
+{
+    horizontalLength = _horizontalLength;
+    verticalLength = _verticalLength;
+    numberOfBombs = (_horizontalLength*_verticalLength)/10;
+    makeVector();
+}
+
 void MineField::setNumberOfBombs(int _numberOfBombs)
 {
     numberOfBombs = _numberOfBombs;
@@ -63,13 +71,13 @@ void MineField::uncoverFieldsAround(unsigned int horizontalParameter, unsigned i
         if (getFieldValue(horizontalParameter, verticalParameter) == 0)
         {
             std::vector<int> positions = {-1, 0, 1};
-            for(auto pos_x : positions)
-                for(auto pos_y : positions)
-                    if(pos_x || pos_y)
-                        uncoverFieldsAround(horizontalParameter + pos_x, verticalParameter + pos_y);
+            for(auto vPosition : positions)
+                for(auto hPosition : positions)
+                    uncoverFieldsAround(horizontalParameter + hPosition, verticalParameter + vPosition);
         }
     }
 }
+
 
 bool MineField::isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
@@ -78,7 +86,8 @@ bool MineField::isFieldCovered(unsigned int horizontalParameter, unsigned int ve
 
 void MineField::putTheBomb(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-   if (horizontalParameter>horizontalLength || verticalParameter>verticalLength || isBombPlaced(horizontalParameter, verticalParameter))
+   if (horizontalParameter>horizontalLength || verticalParameter>verticalLength ||
+           isBombPlaced(horizontalParameter, verticalParameter))
        return;
 
     setFieldValue(horizontalParameter, verticalParameter, bomb);
@@ -144,10 +153,11 @@ void MineField::putRandomBombs()
 }
 void MineField::checkingFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
-    for (auto vertVal = -1; vertVal < 2; vertVal++)
-        for (int horVal = -1; horVal < 2; horVal++)
-            if (!isOutOfVector (horizontalParameter + horVal, verticalParameter + vertVal))
-                if (getFieldValue(horizontalParameter + horVal, verticalParameter + vertVal) == bomb)
+    std::vector<int> positions = {-1, 0, 1};
+    for (auto vPosition : positions)
+        for (auto hPosition : positions)
+            if(!isOutOfVector (horizontalParameter + hPosition, verticalParameter + vPosition))
+                if (getFieldValue(horizontalParameter + hPosition, verticalParameter + vPosition) == bomb)
                     setFieldValue(horizontalParameter, verticalParameter, 1);
 }
 
@@ -184,7 +194,8 @@ void MineField::checkIfbombIsAround()
 
 bool MineField::isOutOfVector(int horizontalParameter, int verticalParameter)
 {
-    if (verticalParameter < 0 || verticalParameter > verticalLength - 1 || horizontalParameter < 0 || horizontalParameter > horizontalLength - 1)
+    if (verticalParameter < 0 || verticalParameter > verticalLength - 1 ||
+            horizontalParameter < 0 || horizontalParameter > horizontalLength - 1)
         return true;
     return false;
 }

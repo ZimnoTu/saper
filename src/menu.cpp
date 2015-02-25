@@ -11,19 +11,19 @@ void Menu::displayMenu()
     std::cout << "4. Set your own field\n";
 
     std::cin >> chosenPosition;
-        Game game(10,10);
+        Game game;
     switch (chosenPosition)
     {
     case 1:
-
+        game.setParameters(10, 10);
         game.play();
         break;
     case 2:
-        //Game game2(16,16);
+        game.setParameters(16, 16);
         game.play();
         break;
     case 3:
-       // Game game3(26,26);
+        game.setParameters(26, 26);
         game.play();
         break;
     case 4:

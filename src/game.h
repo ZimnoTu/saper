@@ -6,8 +6,9 @@
 class Game
 {
 public:
-    Game();
-    Game(int horizontalLenght, int verticalLenght);
+    //Game();
+    //Game(int horizontalLenght, int verticalLenght);
+    void setParameters(int horizontalLength, int verticalLength);
     void startGame();
     bool isMoveValid();
     void placeBomb(unsigned int horizontalParameter, unsigned int verticalParameter);

@@ -10,6 +10,7 @@ public:
     MineField();
     MineField(int horizontal, int vertical);
     bool isFieldPossible();
+    void setParameters(int _horizontalLength, int _verticalLength);
     int getHorizontalLength();
     int getVerticalLength();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);

@@ -12,6 +12,10 @@ struct TestSuite : public Test
 class GameTest : public ::testing :: Test
 {
 protected:
+    virtual void SetUp(){
+        testGame.setParameters(10,10);
+    }
+
     Game testGame;
 };
 /*TEST_F(GameTest, SetFieldSizeByGameClass)
@@ -42,6 +46,12 @@ TEST_F(GameTest, MoveMatchToField_A15)
 TEST_F(GameTest, MoveMatchToField_L15)
 {
     std::string str = "L15";
+    testGame.parseInput(str);
+    EXPECT_FALSE(testGame.isMoveValid());
+}
+TEST_F(GameTest, MoveMatchToField_0a)
+{
+    std::string str = "0a";
     testGame.parseInput(str);
     EXPECT_FALSE(testGame.isMoveValid());
 }

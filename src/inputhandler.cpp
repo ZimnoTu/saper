@@ -53,9 +53,9 @@ std::string InputHandler::prepareInputToRead( std::string &str)
     std::string tmpString;
     tmpString = eraseInvalidSigns(str);
     if(!isNumberOfAlphaAndDigitsGood(tmpString))
-        return "0";
+        return "bad input";
     if(areDigitsOnBothEnds(tmpString))
-        return "0";
+        return "bad input";
     tmpString = swapping(tmpString);
     tmpString = changeToUppercase(tmpString);
     return tmpString;
@@ -96,7 +96,7 @@ std::string InputHandler::processInput(std::string &str)
 {
     std::string processedInput;
     processedInput = prepareInputToRead(str);
-    if(processedInput != "0")
+    if(processedInput != "bad input")
         setParameters(processedInput);
     return processedInput;
 }

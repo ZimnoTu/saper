@@ -1,8 +1,14 @@
 #include "game.h"
+#include <iostream>
 
-Game::Game() : mineField(10, 10){ }
+//Game::Game() : mineField(10, 10){ }
 
-Game::Game(int horizontalLenght, int verticalLenght) : mineField(horizontalLenght, verticalLenght){ }
+//Game::Game(int horizontalLenght, int verticalLenght) : mineField(horizontalLenght, verticalLenght){ }
+
+void Game::setParameters(int horizontalLength, int verticalLength)
+{
+    mineField.setParameters(horizontalLength, verticalLength);
+}
 
 void Game::startGame()
 {
@@ -19,9 +25,11 @@ std::string Game::parseInput(std::string input)
 
 bool Game::isMoveValid()
 {
-    if(inputHndlr.getHorizontalParameter() > mineField.getHorizontalLength())
+    if(inputHndlr.getHorizontalParameter() > mineField.getHorizontalLength()
+            || inputHndlr.getHorizontalParameter() < 0)
         return false;
-    if(inputHndlr.getVerticalParameter() > mineField.getVerticalLength())
+    if(inputHndlr.getVerticalParameter() > mineField.getVerticalLength()
+            || inputHndlr.getVerticalParameter() < 0)
         return false;
     return true;
 }
@@ -79,7 +87,6 @@ int Game::getFieldValue(unsigned int horizontalParameter, unsigned int verticalP
 
 void Game::play()
 {
-    std::cout << "Hello! " << std::endl;
     startGame();
     int exit = 0;
 
@@ -90,6 +97,8 @@ void Game::play()
         draw();
         std::cout << "Your move: ";
         std::cin >> move;
+        //std::cin.getline(move, 10);
+        //std::getline (std::cin, move);
 
         exit = makeMove(move);
         if(exit == 9)
