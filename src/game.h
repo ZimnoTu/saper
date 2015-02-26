@@ -21,6 +21,7 @@ public:
     bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
     void draw();
     void winner();
+    void probaWatku();
 
     void play();
 

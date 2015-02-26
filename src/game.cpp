@@ -1,5 +1,6 @@
 #include "game.h"
 #include <iostream>
+#include <thread>
 
 //Game::Game() : mineField(10, 10){ }
 
@@ -95,10 +96,10 @@ void Game::play()
     {
         std::string move;
         draw();
+        std::cout << "Number of bombs: " << mineField.getnumberOfBombs() << std::endl;
+        std::cout << "Number of uncovered fields: " << mineField.getnumberOfUncoveredFields() << std::endl;
         std::cout << "Your move: ";
         std::cin >> move;
-        //std::cin.getline(move, 10);
-        //std::getline (std::cin, move);
 
         exit = makeMove(move);
         if(exit == 9)
@@ -145,4 +146,12 @@ void Game::winner()
     std::cout <<"         `@@@@@@@@@@@                \n";
     std::cout <<"           :@@@@@@@                  \n";
     std::cout <<" \n";
+}
+
+void Game::probaWatku()
+{
+    for (int i=30; i>0; --i) {
+      std::cout << i << std::endl;
+      std::this_thread::sleep_for (std::chrono::seconds(1));
+    }
 }

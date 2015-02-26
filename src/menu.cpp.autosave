@@ -89,10 +89,9 @@ void Menu::displayMenu()
             break;
 
         default:
-        {
             selectedInvalidOption();
             continue;
-        }
+        
         }
         if(chosenPosition != 5)
         {
