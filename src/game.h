@@ -17,8 +17,8 @@ public:
     std::string parseInput (std::string input);
 
     int makeMove(std::string &str);
-    bool isFieldCovered();
-    bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
+    StateOFField isFieldCovered();
+    StateOFField isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
     void draw();
     void winner();
     void probaWatku();

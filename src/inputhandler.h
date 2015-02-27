@@ -10,6 +10,8 @@ public:
     bool areDigitsOnBothEnds(std::string str);
     bool isNumberOfAlphaAndDigitsGood (std::string str);
     std::string changeToUppercase(std::string &str);
+    bool wantSetFlag(std::string str);
+    std::string cutOffFlagInformation(std::string str);
 
     void setParameters(std::string checkedInput);
     int getHorizontalParameter();

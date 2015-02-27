@@ -3,5 +3,5 @@
 SmallField::SmallField()
 {
     value = 0;
-    covered = true;
+    state = StateOFField::covered;
 }

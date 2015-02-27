@@ -26,15 +26,13 @@ bool InputHandler::areDigitsOnBothEnds(std::string str)
     return false;
 }
 
-std::string InputHandler::swapping(std::string str) /////BOŻE JAK FOKA PŁACZE!
+std::string InputHandler::swapping(std::string str)
 {
     std::string tmpString = str;
-    std::string tmpString2;
     std::rotate(tmpString.begin(),
                     std::find_if(tmpString.begin(), tmpString.end(), isalpha),
                     tmpString.end());
-    tmpString2 = tmpString;
-    return tmpString2;
+    return tmpString;
 }
 
 bool InputHandler::isNumberOfAlphaAndDigitsGood (std::string str)
@@ -64,6 +62,19 @@ std::string InputHandler::changeToUppercase( std::string &str)
 {
     str.front() = toupper(str.front());
     return str;
+}
+
+bool InputHandler::wantSetFlag(std::string str)
+{
+    if(str.find(" -f", 0) <= str.length())
+        return true;
+    return false;
+}
+
+std::string InputHandler::cutOffFlagInformation(std::string str)
+{
+    std::string newString = str.substr(0, str.find(" -f",0));
+    return newString;
 }
 
 void InputHandler::setParameters(std::string checkedInput)
@@ -100,3 +111,5 @@ std::string InputHandler::processInput(std::string &str)
         setParameters(processedInput);
     return processedInput;
 }
+
+

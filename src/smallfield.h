@@ -1,8 +1,10 @@
 #pragma once
 
+enum class StateOFField : char {covered, uncovered, flag };
+
 struct SmallField
 {
     int value;
-    bool covered;
+    StateOFField state;
     SmallField();
 };

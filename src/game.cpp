@@ -57,11 +57,11 @@ int Game::makeMove(std::string &str)
         return 0;
 }
 
-bool Game::isFieldCovered()
+StateOFField Game::isFieldCovered()
 {
     return mineField.isFieldCovered(presentHorizontalMove, presentVerticalMove);
 }
-bool Game::isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter)
+StateOFField Game::isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
     return mineField.isFieldCovered(horizontalParameter, verticalParameter);
 }
@@ -99,7 +99,7 @@ void Game::play()
         std::cout << "Number of bombs: " << mineField.getnumberOfBombs() << std::endl;
         std::cout << "Number of uncovered fields: " << mineField.getnumberOfUncoveredFields() << std::endl;
         std::cout << "Your move: ";
-        std::cin >> move;
+        std::getline(std::cin, move);
 
         exit = makeMove(move);
         if(exit == 9)

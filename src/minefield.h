@@ -18,7 +18,7 @@ public:
     void uncoverField (unsigned int horizontalParameter , unsigned int verticalParameter);
     void uncoverFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
     void uncoverAll(unsigned int horizontalParameter, unsigned int verticalParameter);
-    bool isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
+    StateOFField isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     bool isBombPossible();
     void setNumberOfBombs(int _numberOfBombs);

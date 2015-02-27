@@ -70,19 +70,19 @@ TEST_F(GameTest, MoveChangedFieldTo_Uncoverd_Uppercase)
 {
     std::string str("A1");
     testGame.makeMove(str);
-    EXPECT_FALSE(testGame.isFieldCovered());
+    EXPECT_EQ(StateOFField::uncovered, testGame.isFieldCovered());
 }
 TEST_F(GameTest, MoveChangedFieldTo_Uncoverd_Lowercase_3c)
 {
     std::string str("3C");
     testGame.makeMove(str);
-    EXPECT_FALSE(testGame.isFieldCovered());
+    EXPECT_EQ(StateOFField::uncovered, testGame.isFieldCovered());
 }
 TEST_F(GameTest, MoveChangedFieldAroundTo_Uncovered)
 {
     std::string str("A1");
     testGame.makeMove(str);
-    EXPECT_FALSE(testGame.isFieldCovered(1,1));
+    EXPECT_EQ(StateOFField::uncovered, testGame.isFieldCovered(1,1));
 }
 TEST_F(GameTest, MoveChangedFieldAroundTo_Uncoveredd)
 {
@@ -90,6 +90,6 @@ TEST_F(GameTest, MoveChangedFieldAroundTo_Uncoveredd)
     testGame.placeBomb(2,2);
     std::string str("B2");
     testGame.makeMove(str);
-    EXPECT_FALSE(testGame.isFieldCovered(2,2));
+    EXPECT_EQ(StateOFField::uncovered, testGame.isFieldCovered(2,2));
 }
 

@@ -11,7 +11,7 @@ void MineFieldDrawer::drawField(MineField &mineField)
         {
             if (horizontal == 0)
                 drawNumberAndFrame(mineField, vertical, horizontal);
-            if(mineField.isFieldCovered(horizontal, vertical))
+            if(mineField.isFieldCovered(horizontal, vertical) == StateOFField::covered)
                 std::cout<< ". ";
             else
             {

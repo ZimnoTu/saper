@@ -113,3 +113,19 @@ TEST_F(InputHandlerTest, interpretInputVertical_A11)
     testIH.setParameters(testString);
     EXPECT_EQ(10, testIH.getVerticalParameter());
 }
+TEST_F(InputHandlerTest, findInformationAboutFlag)
+{
+    std::string testString = "A1 -f";
+    EXPECT_TRUE(testIH.wantSetFlag(testString));
+}
+TEST_F(InputHandlerTest, flagIsSpotted_cutOffFlagInformation)
+{
+    std::string testString = "A1 -f";
+    EXPECT_EQ("A1", testIH.cutOffFlagInformation(testString));
+}
+TEST_F(InputHandlerTest, inputWithFlagIsGoodProcessed)
+{
+    std::string testString = "A1 -f";
+    EXPECT_EQ("A1", testIH.prepareInputToRead(testString)); //to nie jest chyba dobre miejsce na wywolanie czegos odnosnie falgi...
+
+}

@@ -30,7 +30,7 @@ TEST_F (MineTesting, otherField)
 }
 TEST_F (MineTesting, fieldToBig_vertical)
 {
-    MineField mineFieldTooBig(10, 99);
+    MineField mineFieldTooBig(10, 100);
     EXPECT_FALSE(mineFieldTooBig.isFieldPossible());
 }
 TEST_F (MineTesting, fieldToBig_horizontal)
