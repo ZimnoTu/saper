@@ -15,6 +15,8 @@ public:
     void checkingField();
     int getFieldValue(unsigned int horizontalParameter, unsigned int verticalParameter);
     std::string parseInput (std::string input);
+    int getMaxHorizontalSize();
+    int getMaxVerticalSize();
 
     int makeMove(std::string &str);
     StateOFField isFieldCovered();

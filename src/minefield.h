@@ -13,6 +13,8 @@ public:
     void setParameters(int _horizontalLength, int _verticalLength);
     int getHorizontalLength();
     int getVerticalLength();
+    int getMaxHorizontal();
+    int getMaxVertical();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);
     void setFieldValue (unsigned int horizontalParameter , unsigned int verticalParameter, int value);
     void setField2Uncovered (unsigned int horizontalParameter , unsigned int verticalParameter);
@@ -40,6 +42,7 @@ public:
 
     void uncoverAllBombs();
     void uncoverFieldsAroundByRecurrence(unsigned int horizontalParameter, unsigned int verticalParameter);
+
 private:
     unsigned int horizontalLength;
     unsigned int verticalLength;

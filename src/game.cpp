@@ -24,6 +24,16 @@ std::string Game::parseInput(std::string input)
     return processedInput;
 }
 
+int Game::getMaxHorizontalSize()
+{
+    return mineField.getMaxHorizontal();
+}
+
+int Game::getMaxVerticalSize()
+{
+    return mineField.getMaxVertical();
+}
+
 bool Game::isMoveValid()
 {
     if(inputHndlr.getHorizontalParameter() > mineField.getHorizontalLength()

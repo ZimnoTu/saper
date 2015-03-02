@@ -47,6 +47,16 @@ int MineField::getVerticalLength()
     return verticalLength;
 }
 
+int MineField::getMaxHorizontal()
+{
+    return maxHorizontal;
+}
+
+int MineField::getMaxVertical()
+{
+    return maxVertical;
+}
+
 int MineField::getFieldValue(unsigned int horizontalParameter, unsigned int verticalParameter)
 {
     return field[verticalParameter][horizontalParameter].value;
