@@ -49,7 +49,8 @@ bool InputHandler::isNumberOfAlphaAndDigitsGood (std::string str)
 std::string InputHandler::prepareInputToRead( std::string &str)
 {
     std::string tmpString;
-    tmpString = eraseInvalidSigns(str);
+    tmpString = cutOffFlagInformation(str);
+    tmpString = eraseInvalidSigns(tmpString);
     if(!isNumberOfAlphaAndDigitsGood(tmpString))
         return "bad input";
     if(areDigitsOnBothEnds(tmpString))
@@ -66,14 +67,14 @@ std::string InputHandler::changeToUppercase( std::string &str)
 
 bool InputHandler::wantSetFlag(std::string str)
 {
-    if(str.find(" -f", 0) <= str.length())
+    if(str.find("-f", 0) <= str.length())
         return true;
     return false;
 }
 
 std::string InputHandler::cutOffFlagInformation(std::string str)
 {
-    std::string newString = str.substr(0, str.find(" -f",0));
+    std::string newString = str.substr(0, str.find("-f",0));
     return newString;
 }
 

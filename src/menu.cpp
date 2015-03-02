@@ -9,7 +9,7 @@ void Menu::displayMenu()
     std::cout << "Welcom to \"Minesweeper\"! \n";
     while(contiune != 'n' && contiune != 'N')
     {
-        game.setParameters(0,0);
+        game.eraseMinefield();
         std::cout << "Choose level: \n";
         std::cout << "1. Beginer\n";
         std::cout << "2. Intermediate\n";
@@ -64,8 +64,8 @@ void Menu::setOwnField()
     while(!std::cin.good() || horizontal > 26)
     {
         std::cout << "\tWrong parameters!\n\tMax horizontal length = 26\n";
-        std::cin.clear();
-        std::cin.ignore(100, '\n');
+        //std::cin.clear();
+        //std::cin.ignore(100, '\n');
         std::cin >> horizontal;
     }
 
@@ -74,8 +74,8 @@ void Menu::setOwnField()
     while(!std::cin.good() || vertical > 99)
     {
         std::cout << "\tWrong parameters!\n\tMax vertical length = 99\n";
-        std::cin.clear();
-        std::cin.ignore(100, '\n');
+        //std::cin.clear();
+        //std::cin.ignore(100, '\n');
         std::cin >> vertical;
     }
 

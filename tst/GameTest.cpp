@@ -92,4 +92,10 @@ TEST_F(GameTest, MoveChangedFieldAroundTo_Uncoveredd)
     testGame.makeMove(str);
     EXPECT_EQ(StateOFField::uncovered, testGame.isFieldCovered(2,2));
 }
+TEST_F(GameTest, FieldChangedTo_Flagged)
+{
+    std::string str("A1 -f");
+    testGame.makeMove(str);
+    EXPECT_EQ(StateOFField::flag, testGame.isFieldCovered(0,0));
+}
 

@@ -121,11 +121,10 @@ TEST_F(InputHandlerTest, findInformationAboutFlag)
 TEST_F(InputHandlerTest, flagIsSpotted_cutOffFlagInformation)
 {
     std::string testString = "A1 -f";
-    EXPECT_EQ("A1", testIH.cutOffFlagInformation(testString));
+    EXPECT_EQ("A1 ", testIH.cutOffFlagInformation(testString));
 }
 TEST_F(InputHandlerTest, inputWithFlagIsGoodProcessed)
 {
     std::string testString = "A1 -f";
-    EXPECT_EQ("A1", testIH.prepareInputToRead(testString)); //to nie jest chyba dobre miejsce na wywolanie czegos odnosnie falgi...
-
+    EXPECT_EQ("A1", testIH.prepareInputToRead(testString));
 }

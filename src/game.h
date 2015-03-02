@@ -22,6 +22,7 @@ public:
     void draw();
     void winner();
     void probaWatku();
+    void eraseMinefield();
 
     void play();
 

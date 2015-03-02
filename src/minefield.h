@@ -15,10 +15,11 @@ public:
     int getVerticalLength();
     int getFieldValue (unsigned int horizontalParameter, unsigned int verticalParameter);
     void setFieldValue (unsigned int horizontalParameter , unsigned int verticalParameter, int value);
-    void uncoverField (unsigned int horizontalParameter , unsigned int verticalParameter);
-    void uncoverFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
+    void setField2Uncovered (unsigned int horizontalParameter , unsigned int verticalParameter);
+    void setField2Flagged (unsigned int horizontalParameter, unsigned int verticalParameter);
+    void uncoverFields(unsigned int horizontalParameter, unsigned int verticalParameter);
     void uncoverAll(unsigned int horizontalParameter, unsigned int verticalParameter);
-    StateOFField isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
+    StateOFField getFieldState(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     bool isBombPossible();
     void setNumberOfBombs(int _numberOfBombs);
@@ -33,16 +34,20 @@ public:
     void checkingFieldsAround(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     void incraseIfBomb(int bombCounter);
-    int getnumberOfUncoveredFields();
+    int getnumberOfHiddenFields();
     int getnumberOfBombs();
+    void eraseFields();
 
     void uncoverAllBombs();
+    void uncoverFieldsAroundByRecurrence(unsigned int horizontalParameter, unsigned int verticalParameter);
 private:
     unsigned int horizontalLength;
     unsigned int verticalLength;
     unsigned int numberOfBombs;
     std::vector<std::vector<SmallField>> field;
     const int bomb;
+    const int maxVertical = 99;
+    const int maxHorizontal = 26;
 
     void makeVector();
     bool isBomb(int &element);
