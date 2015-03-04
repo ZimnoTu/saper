@@ -116,7 +116,7 @@ TEST_F(InputHandlerTest, interpretInputVertical_A11)
 TEST_F(InputHandlerTest, findInformationAboutFlag)
 {
     std::string testString = "A1 -f";
-    EXPECT_TRUE(testIH.wantSetFlag(testString));
+    EXPECT_TRUE(testIH.isFlagDemanded(testString));
 }
 TEST_F(InputHandlerTest, flagIsSpotted_cutOffFlagInformation)
 {

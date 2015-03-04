@@ -161,6 +161,13 @@ bool MineField::isBombPossible()
         return true;
 }
 
+bool MineField::isBombHere(unsigned int horizontalParameter, unsigned int verticalParameter)
+{
+    if(getFieldValue(horizontalParameter, verticalParameter) == bomb)
+        return true;
+    return false;
+}
+
 void MineField::putRandomBombs()
 {
     unsigned int horizontalParameter;
@@ -206,7 +213,7 @@ void MineField::uncoverAllBombs()
 {
     for (unsigned int vertical = 0; vertical< verticalLength; vertical++)
         for (unsigned int horizontal = 0; horizontal< horizontalLength; horizontal++)
-            if (getFieldValue(horizontal, vertical) == bomb )
+            if (getFieldValue(horizontal, vertical) == bomb)
                 setField2Uncovered(horizontal, vertical);
 }
 
@@ -214,7 +221,7 @@ void MineField::checkIfbombIsAround()
 {
     for (unsigned int vertical = 0; vertical< verticalLength; vertical++)
         for (unsigned int horizontal = 0; horizontal< horizontalLength; horizontal++)
-            if (getFieldValue(horizontal, vertical) != bomb )
+            if (getFieldValue(horizontal, vertical) != bomb)
                 checkingFieldsAround(horizontal, vertical);
 }
 

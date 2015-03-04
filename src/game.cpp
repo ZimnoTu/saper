@@ -2,10 +2,6 @@
 #include <iostream>
 #include <thread>
 
-//Game::Game() : mineField(10, 10){ }
-
-//Game::Game(int horizontalLenght, int verticalLenght) : mineField(horizontalLenght, verticalLenght){ }
-
 void Game::setParameters(int horizontalLength, int verticalLength)
 {
     mineField.setParameters(horizontalLength, verticalLength);
@@ -45,29 +41,34 @@ bool Game::isMoveValid()
     return true;
 }
 
-int Game::makeMove(std::string &str)
+bool Game::isBomb(unsigned int presentHorizontalMove, unsigned int presentVerticalMove)
+{
+    return mineField.isBombHere(presentHorizontalMove, presentVerticalMove);
+}
+
+bool Game::makeMove(std::string &str)
 {
     std::string processedInput = parseInput(str);
-    bool wantFlag = inputHndlr.wantSetFlag(str);
+    bool flag = inputHndlr.isFlagDemanded(str);
 
     if (isMoveValid())
     {
         presentHorizontalMove = inputHndlr.getHorizontalParameter();
         presentVerticalMove = inputHndlr.getVerticalParameter();
-        if(wantFlag)
+        if(flag)
         {
             mineField.setField2Flagged(presentHorizontalMove, presentVerticalMove);
-            return 0;
+            return false;
         }
-        else if (getFieldValue(presentHorizontalMove, presentVerticalMove) == 9)
+        else if(isBomb(presentHorizontalMove, presentVerticalMove))
         {
             mineField.uncoverAllBombs();
-            return 9;
+            return true;
         }
         else
         {
             mineField.uncoverFields(presentHorizontalMove,presentVerticalMove);
-            return 0;
+            return false;
         }
     }
     else
@@ -103,34 +104,37 @@ int Game::getFieldValue(unsigned int horizontalParameter, unsigned int verticalP
     mineField.getFieldValue(horizontalParameter, verticalParameter);
 }
 
+std::string Game::cleanBufforAndTakeMove()
+{
+    std::string move;
+    do
+    {
+        std::getline(std::cin, move);
+    }
+    while(move == "");
+
+    return move;
+}
+
 void Game::play()
 {
     startGame();
     int exit = 0;
 
     while (mineField.getnumberOfBombs() != mineField.getnumberOfHiddenFields() &&
-            exit == 0)
+            !exit)
     {
-        std::string move;
         draw();
-        std::cout << "Number of bombs: " << mineField.getnumberOfBombs() << std::endl;
-        std::cout << "Number of uncovered fields: " << mineField.getnumberOfHiddenFields() << std::endl;
         std::cout << "Your move: ";
-
-        do
-        {
-            std::getline(std::cin, move);
-        }
-        while(move == "");
-
+        std::string move = cleanBufforAndTakeMove();
         exit = makeMove(move);
-        if(exit == 9)
+        if(exit)
         {
             draw();
             std::cout<< "Loser!!!\n";
         }
     }
-    if(exit == 0)
+    if(!exit)
     {
         draw();
         winner();

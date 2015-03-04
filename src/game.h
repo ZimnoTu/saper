@@ -6,11 +6,10 @@
 class Game
 {
 public:
-    //Game();
-    //Game(int horizontalLenght, int verticalLenght);
     void setParameters(int horizontalLength, int verticalLength);
     void startGame();
     bool isMoveValid();
+    bool isBomb(unsigned int presentHorizontalMove, unsigned int presentVerticalMove);
     void placeBomb(unsigned int horizontalParameter, unsigned int verticalParameter);
     void checkingField();
     int getFieldValue(unsigned int horizontalParameter, unsigned int verticalParameter);
@@ -18,7 +17,7 @@ public:
     int getMaxHorizontalSize();
     int getMaxVerticalSize();
 
-    int makeMove(std::string &str);
+    bool makeMove(std::string &str);
     StateOFField isFieldCovered();
     StateOFField isFieldCovered(unsigned int horizontalParameter, unsigned int verticalParameter);
     void draw();
@@ -30,6 +29,8 @@ public:
 
 
 
+    std::string getMove(std::string move);
+    std::string cleanBufforAndTakeMove();
 private:
 
     unsigned int presentHorizontalMove;
@@ -38,6 +39,7 @@ private:
     MineField mineField;
     InputHandler inputHndlr;
     MineFieldDrawer mineFieldDrawer;
+    const int bomb = 9;
 
 
 };

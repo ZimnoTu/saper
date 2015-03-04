@@ -31,6 +31,7 @@ void MineFieldDrawer::drawField(MineField &mineField)
     }
     drawDashes(mineField);
     drawLetters(mineField);
+    displayAdditionalInformation(mineField);
 }
 
 void MineFieldDrawer::drawLetters(MineField &mineField)
@@ -78,4 +79,10 @@ void MineFieldDrawer::drawNumber(unsigned numberOfRow)
         std::cout<< numberOfRow + 1 << " ";
     else
         std::cout<< numberOfRow + 1;
+}
+
+void MineFieldDrawer::displayAdditionalInformation(MineField &mineField)
+{
+    std::cout << "Number of bombs: " << mineField.getnumberOfBombs() << std::endl;
+    std::cout << "Number of uncovered fields: " << mineField.getnumberOfHiddenFields() << std::endl;
 }

@@ -64,6 +64,8 @@ void Menu::setOwnField()
     while(!std::cin.good() || horizontal > game.getMaxHorizontalSize())
     {
         std::cout << "\tWrong parameters!\n\tMax horizontal length = 26\n";
+        std::cin.clear();
+        std::cin.ignore(100, '\n');
         std::cin >> horizontal;
     }
 
@@ -72,6 +74,8 @@ void Menu::setOwnField()
     while(!std::cin.good() || vertical > game.getMaxVerticalSize())
     {
         std::cout << "\tWrong parameters!\n\tMax vertical length = 99\n";
+        std::cin.clear();
+        std::cin.ignore(100, '\n');
         std::cin >> vertical;
     }
 

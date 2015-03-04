@@ -24,6 +24,7 @@ public:
     StateOFField getFieldState(unsigned int horizontalParameter, unsigned int verticalParameter);
 
     bool isBombPossible();
+    bool isBombHere(unsigned int horizontalParameter, unsigned int verticalParameter);
     void setNumberOfBombs(int _numberOfBombs);
     void putTheBomb(unsigned int horizontalParameter, unsigned int verticalParameter);
     bool isBombPlaced(unsigned int horizontalParameter, unsigned int verticalParameter);

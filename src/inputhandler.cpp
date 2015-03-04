@@ -65,7 +65,7 @@ std::string InputHandler::changeToUppercase( std::string &str)
     return str;
 }
 
-bool InputHandler::wantSetFlag(std::string str)
+bool InputHandler::isFlagDemanded(std::string str)
 {
     if(str.find("-f", 0) <= str.length())
         return true;

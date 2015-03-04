@@ -12,5 +12,6 @@ public:
     void drawDashes(MineField &mineField);
     void drawNumberAndFrame(MineField &mineField, unsigned int nuberOfRow,unsigned int numberOfColumn);
     void drawNumber(unsigned int nuberOfRow);
+    void displayAdditionalInformation(MineField &mineField);
 
 };
