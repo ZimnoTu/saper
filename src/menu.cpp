@@ -6,7 +6,7 @@
 void Menu::displayMenu()
 {
     char contiune = 'y';
-    std::cout << "Welcom to \"Minesweeper\"! \n";
+    std::cout << "Welcome to \"Minesweeper\"! \n";
     while(contiune != 'n' && contiune != 'N')
     {
         game.eraseMinefield();
